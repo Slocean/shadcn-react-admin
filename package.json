@@ -104,5 +104,15 @@
 		"extends": [
 			"@commitlint/config-conventional"
 		]
+	},
+	"pnpm": {
+		"overrides": {
+			"lodash": "^4.17.21",
+			"js-yaml": "^4.1.0",
+			"preact": ">=10.26.10",
+			"playwright": ">=1.55.1",
+			"diff": ">=4.0.4",
+			"mdast-util-to-hast": ">=13.2.1"
+		}
 	}
 }
