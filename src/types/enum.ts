@@ -3,9 +3,16 @@ export enum BasicStatus {
 	ENABLE = 1,
 }
 
+// export enum ResultStatus {
+// 	SUCCESS = 0,
+// 	ERROR = -1,
+// 	TIMEOUT = 401,
+// }
+
+// 兼容旧版本接口返回结构
 export enum ResultStatus {
-	SUCCESS = 0,
-	ERROR = -1,
+	SUCCESS = 200,
+	ERROR = 500,
 	TIMEOUT = 401,
 }
 
