@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { UserInfo, UserToken } from "#/entity";
 import { StorageEnum } from "#/enum";
-import userService, { type SignInReq } from "@/api/services/userService";
+// import userService, { type SignInReq } from "@/api/services/userService";
+import systemService, { type SignInReq } from "@/api/services/authService";
 
 type UserStore = {
 	userInfo: Partial<UserInfo>;
@@ -55,23 +56,21 @@ export const useSignIn = () => {
 	const { setUserToken, setUserInfo } = useUserActions();
 
 	const signInMutation = useMutation({
-		mutationFn: userService.signin,
+		// mutationFn: userService.signin,
+		mutationFn: systemService.login,
 	});
 
 	const signIn = async (data: SignInReq) => {
-		// const res = await signInMutation.mutateAsync(data);
-		// const { user, accessToken, refreshToken } = res;
-		// setUserToken({ accessToken, refreshToken });
-		// setUserInfo(user);
 		try {
 			const res = await signInMutation.mutateAsync(data);
-			const { user, accessToken, refreshToken } = res;
-			setUserToken({ accessToken, refreshToken });
-			setUserInfo(user);
+			const { token, userInfo, departs, multi_depart, sysAllDictItems } = res.result;
+			setUserToken({ accessToken: token, refreshToken: token });
+			setUserInfo(userInfo);
 		} catch (err) {
 			// toast.error(err.message, {
 			// 	position: "top-center",
 			// });
+			console.error(err.message);
 			throw err;
 		}
 	};
