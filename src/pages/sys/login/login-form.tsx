@@ -125,7 +125,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 									<Button
 										type="button"
 										variant="outline"
-										className="h-9 w-32 px-2"
+										className="h-9 w-32 p-0 overflow-hidden"
 										onClick={refreshCaptchaSafe}
 										disabled={captchaLoading}
 									>
