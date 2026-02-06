@@ -33,7 +33,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 			password: DB_USER[0].password,
 			remember_me: true,
 			captcha: "",
-			checkKey: "",
+			checkKey: 0,
 		},
 	});
 

@@ -7,7 +7,7 @@ export interface SignInReq {
 	password: string;
 	remember_me?: boolean;
 	captcha?: string;
-	checkKey?: string;
+	checkKey?: number;
 }
 
 // 登录响应参数

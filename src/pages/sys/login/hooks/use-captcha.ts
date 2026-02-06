@@ -5,8 +5,12 @@ import type { CaptchaReq, SignInReq } from "@/api/services/authService";
 import authService from "@/api/services/authService";
 
 const createCheckKey = () => {
-	if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
-	return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+	// 生成随机字符串作为checkKey
+	// if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+	// return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+	// 使用时间戳单位秒作为checkKey，避免重复请求
+	return Math.floor(Date.now() / 1000);
 };
 
 export function useCaptcha(form: UseFormReturn<SignInReq>) {
