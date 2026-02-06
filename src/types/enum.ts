@@ -12,6 +12,7 @@ export enum BasicStatus {
 // 兼容旧版本接口返回结构
 export enum ResultStatus {
 	SUCCESS = 200,
+	SUCCESS_0 = 0,
 	ERROR = 500,
 	TIMEOUT = 401,
 }

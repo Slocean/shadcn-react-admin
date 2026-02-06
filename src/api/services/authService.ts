@@ -5,9 +5,9 @@ import apiClient from "../apiClient";
 export interface SignInReq {
 	username: string;
 	password: string;
-	remember_me: boolean;
-	captcha: string;
-	checkKey: string;
+	remember_me?: boolean;
+	captcha?: string;
+	checkKey?: string;
 }
 
 // 登录响应参数
@@ -19,13 +19,25 @@ export type SignInRes = Result<{
 	sysAllDictItems: any;
 }>;
 
-// 系统接口枚举
-export enum SystemApi {
-	login = "/sys/login",
+// 验证码请求参数
+export interface CaptchaReq {
+	[key: string | number]: string | number;
 }
 
-const login = (data: SignInReq) => apiClient.post<SignInRes>({ url: SystemApi.login, data });
+// 验证码响应参数
+export type CaptchaRes = Result<string>;
+
+// 系统接口枚举
+export enum AuthApi {
+	login = "/sys/login",
+	getCaptcha = "/sys/randomImage",
+}
+
+const login = (data: SignInReq) => apiClient.post<SignInRes>({ url: AuthApi.login, data });
+const getCaptcha = (params: CaptchaReq) =>
+	apiClient.get<CaptchaRes>({ url: `${AuthApi.getCaptcha}/${Math.floor(Date.now() / 1000)}`, params });
 
 export default {
 	login,
+	getCaptcha,
 };

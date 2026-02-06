@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import type { UserInfo, UserToken } from "#/entity";
 import { StorageEnum } from "#/enum";
 // import userService, { type SignInReq } from "@/api/services/userService";
-import systemService, { type SignInReq } from "@/api/services/authService";
+import authService, { type SignInReq } from "@/api/services/authService";
 
 type UserStore = {
 	userInfo: Partial<UserInfo>;
@@ -57,13 +57,14 @@ export const useSignIn = () => {
 
 	const signInMutation = useMutation({
 		// mutationFn: userService.signin,
-		mutationFn: systemService.login,
+		mutationFn: authService.login,
 	});
 
 	const signIn = async (data: SignInReq) => {
 		try {
 			const res = await signInMutation.mutateAsync(data);
-			const { token, userInfo, departs, multi_depart, sysAllDictItems } = res.result;
+			const payload = (res as any)?.result ?? res;
+			const { token, userInfo } = payload;
 			setUserToken({ accessToken: token, refreshToken: token });
 			setUserInfo(userInfo);
 		} catch (err) {

@@ -45,6 +45,8 @@
 			"otherSignIn": "Or continue with",
 			"password": "Password",
 			"passwordPlaceholder": "Please input password",
+			"captcha": "Captcha",
+			"captchaPlaceholder": "Please input captcha",
 			"policy": "I agree to the xxx Privacy Policy",
 			"policyPlaceholder": "Register after checking",
 			"privacyPolicy": " Privacy policy ",

@@ -1,11 +1,10 @@
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { DB_USER } from "@/_mock/assets_backup";
-// import type { SignInReq } from "@/api/services/userService";
 import type { SignInReq } from "@/api/services/authService";
 import { PasswordInput } from "@/components/form/PasswordInput";
 import { Icon } from "@/components/icon";
@@ -16,13 +15,14 @@ import { Checkbox } from "@/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/ui/form";
 import { Input } from "@/ui/input";
 import { cn } from "@/utils";
+import { useCaptcha } from "./hooks/use-captcha";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"form">) {
 	const { t } = useTranslation();
 	const [loading, setLoading] = useState(false);
 	const [remember, setRemember] = useState(true);
-	const navigatge = useNavigate();
+	const navigate = useNavigate();
 
 	const { loginState, setLoginState } = useLoginStateContext();
 	const signIn = useSignIn();
@@ -31,19 +31,39 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 		defaultValues: {
 			username: DB_USER[0].username,
 			password: DB_USER[0].password,
+			remember_me: true,
+			captcha: "",
+			checkKey: "",
 		},
 	});
+
+	const { captchaImg, captchaLoading, refreshCaptcha } = useCaptcha(form);
+	const refreshCaptchaSafe = useCallback(async () => {
+		await refreshCaptcha();
+	}, [refreshCaptcha]);
+
+	useEffect(() => {
+		if (loginState !== LoginStateEnum.LOGIN) return;
+		void refreshCaptchaSafe();
+	}, [loginState, refreshCaptchaSafe]);
 
 	if (loginState !== LoginStateEnum.LOGIN) return null;
 
 	const handleFinish = async (values: SignInReq) => {
 		setLoading(true);
 		try {
-			await signIn(values);
-			navigatge(GLOBAL_CONFIG.defaultRoute, { replace: true });
+			await signIn({
+				...values,
+				remember_me: remember,
+				checkKey: values.checkKey || form.getValues("checkKey"),
+			});
+			navigate(GLOBAL_CONFIG.defaultRoute, { replace: true });
 			toast.success(t("sys.login.loginSuccessTitle"), {
 				closeButton: true,
 			});
+		} catch (err) {
+			await refreshCaptchaSafe();
+			throw err;
 		} finally {
 			setLoading(false);
 		}
@@ -90,13 +110,55 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 						)}
 					/>
 
+					{/* 验证码 */}
+					<FormField
+						control={form.control}
+						name="captcha"
+						rules={{ required: t("sys.login.captchaPlaceholder") }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>{t("sys.login.captcha")}</FormLabel>
+								<div className="flex items-center gap-2">
+									<FormControl>
+										<Input placeholder={t("sys.login.captchaPlaceholder")} {...field} />
+									</FormControl>
+									<Button
+										type="button"
+										variant="outline"
+										className="h-9 w-32 px-2"
+										onClick={refreshCaptchaSafe}
+										disabled={captchaLoading}
+									>
+										{captchaLoading ? (
+											<Loader2 className="animate-spin" />
+										) : captchaImg ? (
+											<img
+												src={captchaImg}
+												alt={t("sys.login.captcha")}
+												className="h-full w-full object-cover"
+												draggable={false}
+											/>
+										) : (
+											<span className="text-xs text-muted-foreground">{t("sys.login.captcha")}</span>
+										)}
+									</Button>
+								</div>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
 					{/* 记住我/忘记密码 */}
 					<div className="flex flex-row justify-between">
 						<div className="flex items-center space-x-2">
 							<Checkbox
 								id="remember"
 								checked={remember}
-								onCheckedChange={(checked) => setRemember(checked === "indeterminate" ? false : checked)}
+								onCheckedChange={(checked) => {
+									const next = checked === "indeterminate" ? false : checked;
+									setRemember(next);
+									form.setValue("remember_me", next, { shouldDirty: true });
+								}}
 							/>
 							<label
 								htmlFor="remember"
@@ -105,7 +167,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 								{t("sys.login.rememberMe")}
 							</label>
 						</div>
-						<Button variant="link" onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)} size="sm">
+						<Button type="button" variant="link" onClick={() => setLoginState(LoginStateEnum.RESET_PASSWORD)} size="sm">
 							{t("sys.login.forgetPassword")}
 						</Button>
 					</div>
@@ -118,11 +180,21 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
 					{/* 手机登录/二维码登录 */}
 					<div className="grid gap-4 sm:grid-cols-2">
-						<Button variant="outline" className="w-full" onClick={() => setLoginState(LoginStateEnum.MOBILE)}>
+						<Button
+							type="button"
+							variant="outline"
+							className="w-full"
+							onClick={() => setLoginState(LoginStateEnum.MOBILE)}
+						>
 							<Icon icon="uil:mobile-android" size={20} />
 							{t("sys.login.mobileSignInFormTitle")}
 						</Button>
-						<Button variant="outline" className="w-full" onClick={() => setLoginState(LoginStateEnum.QR_CODE)}>
+						<Button
+							type="button"
+							variant="outline"
+							className="w-full"
+							onClick={() => setLoginState(LoginStateEnum.QR_CODE)}
+						>
 							<Icon icon="uil:qrcode-scan" size={20} />
 							{t("sys.login.qrSignInFormTitle")}
 						</Button>
@@ -133,13 +205,13 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 						<span className="relative z-10 bg-background px-2 text-muted-foreground">{t("sys.login.otherSignIn")}</span>
 					</div>
 					<div className="flex cursor-pointer justify-around text-2xl">
-						<Button variant="ghost" size="icon">
+						<Button type="button" variant="ghost" size="icon">
 							<Icon icon="mdi:github" size={24} />
 						</Button>
-						<Button variant="ghost" size="icon">
+						<Button type="button" variant="ghost" size="icon">
 							<Icon icon="mdi:wechat" size={24} />
 						</Button>
-						<Button variant="ghost" size="icon">
+						<Button type="button" variant="ghost" size="icon">
 							<Icon icon="ant-design:google-circle-filled" size={24} />
 						</Button>
 					</div>
@@ -147,7 +219,12 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 					{/* 注册 */}
 					<div className="text-center text-sm">
 						{t("sys.login.noAccount")}
-						<Button variant="link" className="px-1" onClick={() => setLoginState(LoginStateEnum.REGISTER)}>
+						<Button
+							type="button"
+							variant="link"
+							className="px-1"
+							onClick={() => setLoginState(LoginStateEnum.REGISTER)}
+						>
 							{t("sys.login.signUpFormTitle")}
 						</Button>
 					</div>
