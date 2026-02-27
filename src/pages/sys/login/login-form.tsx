@@ -16,6 +16,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/ui/input";
 import { cn } from "@/utils";
 import { useCaptcha } from "./hooks/use-captcha";
+import { useRemember } from "./hooks/useRemember";
 import { LoginStateEnum, useLoginStateContext } from "./providers/login-provider";
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"form">) {
@@ -26,11 +27,12 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
 	const { loginState, setLoginState } = useLoginStateContext();
 	const signIn = useSignIn();
+	const { getLoginForm } = useRemember();
 
 	const form = useForm<SignInReq>({
 		defaultValues: {
-			username: DB_USER[0].username,
-			password: DB_USER[0].password,
+			username: getLoginForm().username,
+			password: getLoginForm().password,
 			remember_me: true,
 			captcha: "",
 			checkKey: 0,

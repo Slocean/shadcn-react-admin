@@ -9,8 +9,8 @@ export interface UserToken {
 export interface UserInfo {
 	id: string;
 	email: string;
-	username: string;
-	password?: string;
+	// username: string;
+	// password?: string;
 	avatar?: string;
 	roles?: Role[];
 	status?: BasicStatus;
@@ -18,6 +18,10 @@ export interface UserInfo {
 	menu?: MenuTree[];
 }
 
+export interface UserForm {
+	username?: string;
+	password?: string;
+}
 export interface Permission_Old {
 	id: string;
 	parentId: string;
@@ -82,7 +86,9 @@ export interface Menu extends CommonOptions, MenuMetaInfo {
 	type: PermissionType;
 }
 
-export type MenuMetaInfo = Partial<Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">> & {
+export type MenuMetaInfo = Partial<
+	Pick<NavItemDataProps, "path" | "icon" | "caption" | "info" | "disabled" | "auth" | "hidden">
+> & {
 	externalLink?: URL;
 	component?: string;
 };

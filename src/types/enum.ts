@@ -22,6 +22,7 @@ export enum StorageEnum {
 	UserToken = "userToken",
 	Settings = "settings",
 	I18N = "i18nextLng",
+	UserForm = "userForm",
 }
 
 export enum ThemeMode {
