@@ -4,45 +4,49 @@ import { Avatar, AvatarImage } from "@/ui/avatar";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
+import { useTranslation } from "react-i18next";
 
 export default function TeamsTab() {
+	const { t } = useTranslation();
+
 	const items = [
 		{
 			icon: <Icon icon="logos:react" size={40} />,
-			name: "React Developers",
-			desc: "We don’t make assumptions about the rest of your technology stack, so you can develop new features in React.",
+			name: t("management.user.profile.teamsTab.items.react.name"),
+			desc: t("management.user.profile.teamsTab.items.react.desc"),
 			members: fakeAvatars(25),
 			tags: ["React", "AntD"],
 		},
 		{
 			icon: <Icon icon="logos:vue" size={40} />,
-			name: "Vue.js Dev Team",
-			desc: "The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.",
+			name: t("management.user.profile.teamsTab.items.vue.name"),
+			desc: t("management.user.profile.teamsTab.items.vue.desc"),
 			members: fakeAvatars(20),
-			tags: ["Vue.js", "Developer"],
+			tags: ["Vue.js", t("management.user.profile.teamsTab.tags.developer")],
 		},
 		{
 			icon: <Icon icon="logos:figma" size={40} />,
-			name: "Figma Resources",
-			desc: "Explore, install, use, and remix thousands of plugins and files published to the Figma Community by designers and developers.",
+			name: t("management.user.profile.teamsTab.items.figma.name"),
+			desc: t("management.user.profile.teamsTab.items.figma.desc"),
 			members: fakeAvatars(45),
 			tags: ["UI/UX", "Figma"],
 		},
 		{
 			icon: <Icon icon="logos:html-5" size={40} />,
-			name: "Only Beginners",
-			desc: "Learn the basics of how websites work, front-end vs back-end, and using a code editor. Learn basic HTML, CSS, and…",
+			name: t("management.user.profile.teamsTab.items.beginners.name"),
+			desc: t("management.user.profile.teamsTab.items.beginners.desc"),
 			members: fakeAvatars(50),
 			tags: ["CSS", "HTML"],
 		},
 		{
 			icon: <Icon icon="logos:adobe-xd" size={40} />,
-			name: "Creative Designers",
-			desc: "A design or product team is more than just the people on it. A team includes the people, the roles they play.  ",
+			name: t("management.user.profile.teamsTab.items.creative.name"),
+			desc: t("management.user.profile.teamsTab.items.creative.desc"),
 			members: fakeAvatars(55),
 			tags: ["Sketch", "XD"],
 		},
 	];
+
 	return (
 		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{items.map((item) => (

@@ -9,6 +9,7 @@ import { Textarea } from "@/ui/textarea";
 import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 type FieldType = {
@@ -22,6 +23,7 @@ type FieldType = {
 };
 
 export default function GeneralTab() {
+	const { t } = useTranslation();
 	const { avatar, username, email } = useUserInfo();
 	const form = useForm<FieldType>({
 		defaultValues: {
@@ -36,7 +38,7 @@ export default function GeneralTab() {
 	});
 
 	const handleClick = () => {
-		toast.success("Update success!");
+		toast.success(t("management.user.common.updateSuccess"));
 	};
 
 	return (
@@ -46,12 +48,12 @@ export default function GeneralTab() {
 					<UploadAvatar defaultAvatar={avatar} />
 
 					<div className="flex items-center py-6 gap-2 w-40">
-						<Text variant="body1">Public Profile</Text>
+						<Text variant="body1">{t("management.user.account.general.publicProfile")}</Text>
 						<Switch />
 					</div>
 
 					<Button variant="destructive" className="w-40">
-						Delete User
+						{t("management.user.account.general.deleteUser")}
 					</Button>
 				</Card>
 			</div>
@@ -65,7 +67,7 @@ export default function GeneralTab() {
 									name="name"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Username</FormLabel>
+											<FormLabel>{t("management.user.account.general.username")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -77,7 +79,7 @@ export default function GeneralTab() {
 									name="email"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Email</FormLabel>
+											<FormLabel>{t("management.user.account.general.email")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -89,7 +91,7 @@ export default function GeneralTab() {
 									name="phone"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Phone</FormLabel>
+											<FormLabel>{t("management.user.account.general.phone")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -101,7 +103,7 @@ export default function GeneralTab() {
 									name="address"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Address</FormLabel>
+											<FormLabel>{t("management.user.account.general.address")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -113,7 +115,7 @@ export default function GeneralTab() {
 									name="city"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>City</FormLabel>
+											<FormLabel>{t("management.user.account.general.city")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -125,7 +127,7 @@ export default function GeneralTab() {
 									name="code"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Code</FormLabel>
+											<FormLabel>{t("management.user.account.general.code")}</FormLabel>
 											<FormControl>
 												<Input {...field} />
 											</FormControl>
@@ -139,7 +141,7 @@ export default function GeneralTab() {
 									name="about"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>About</FormLabel>
+											<FormLabel>{t("management.user.account.general.about")}</FormLabel>
 											<FormControl>
 												<Textarea {...field} />
 											</FormControl>
@@ -150,7 +152,7 @@ export default function GeneralTab() {
 						</Form>
 					</CardContent>
 					<CardFooter className="flex justify-end">
-						<Button onClick={handleClick}>Save Changes</Button>
+						<Button onClick={handleClick}>{t("management.user.common.saveChanges")}</Button>
 					</CardFooter>
 				</Card>
 			</div>

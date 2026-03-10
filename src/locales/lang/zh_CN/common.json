@@ -93,5 +93,202 @@
 		"task": {
 			"locationHistoryErased": "登录后定位历史会被清除"
 		}
+	},
+	"management": {
+		"user": {
+			"common": {
+				"updateSuccess": "更新成功！",
+				"saveChanges": "保存变更"
+			},
+			"account": {
+				"tabs": {
+					"general": "通用",
+					"notifications": "通知",
+					"security": "安全"
+				},
+				"general": {
+					"publicProfile": "公开资料",
+					"deleteUser": "删除用户",
+					"username": "用户名",
+					"email": "邮箱",
+					"phone": "电话",
+					"address": "地址",
+					"city": "城市",
+					"code": "邮编",
+					"about": "关于"
+				},
+				"notifications": {
+					"activityTitle": "动态",
+					"applicationsTitle": "应用通知",
+					"sectionDesc": "管理你接收通知的方式。",
+					"activity": {
+						"replyOnForm": "有人回复我的表单时发送邮件",
+						"commentOnArticle": "有人评论我的文章时发送邮件",
+						"followMe": "有人关注我时发送邮件"
+					},
+					"applications": {
+						"newsAndAnnouncements": "新闻与公告",
+						"weeklyProductUpdates": "每周产品更新",
+						"weeklyBlogDigest": "每周博客摘要"
+					}
+				},
+				"security": {
+					"oldPassword": "旧密码",
+					"newPassword": "新密码",
+					"confirmNewPassword": "确认新密码",
+					"oldPasswordRequired": "请输入旧密码",
+					"newPasswordRequired": "请输入新密码",
+					"confirmPasswordRequired": "请确认新密码",
+					"passwordsNotMatch": "两次输入的密码不一致"
+				}
+			},
+			"profile": {
+				"index": {
+					"subtitle": "TS 全栈",
+					"tabs": {
+						"profile": "资料",
+						"teams": "团队",
+						"projects": "项目",
+						"connections": "关系"
+					}
+				},
+				"connectionsTab": {
+					"projects": "项目",
+					"tasks": "任务",
+					"connections": "关系",
+					"connected": "已关注",
+					"connect": "关注",
+					"roles": {
+						"uiDesigner": "UI 设计师",
+						"developer": "开发者",
+						"uiuxDesigner": "UI/UX 设计师",
+						"fullStackDeveloper": "全栈开发者",
+						"seo": "SEO"
+					}
+				},
+				"projectsTab": {
+					"client": "客户：{{client}}",
+					"startDate": "开始日期：",
+					"deadline": "截止日期：",
+					"allHours": "总工时：",
+					"daysLeft": "剩余 {{count}} 天",
+					"items": {
+						"adminTemplate": {
+							"name": "管理模板",
+							"desc": "时间是最重要的资产，我们通过高效工作流帮你节省时间。"
+						},
+						"appDesign": {
+							"name": "应用设计",
+							"desc": "应用设计融合了用户界面（UI）与用户体验（UX）。"
+						},
+						"figmaDashboard": {
+							"name": "Figma 仪表盘",
+							"desc": "使用该模板可更好组织设计项目，并提升团队协作效率。"
+						},
+						"createWebsite": {
+							"name": "创建网站",
+							"desc": "域名应与产品或服务相匹配，且便于记忆。"
+						},
+						"logoDesign": {
+							"name": "Logo 设计",
+							"desc": "由顶级设计师打造的高品质 Logo，助力塑造品牌形象。"
+						}
+					}
+				},
+				"teamsTab": {
+					"tags": {
+						"developer": "开发者"
+					},
+					"items": {
+						"react": {
+							"name": "React 开发者",
+							"desc": "无需改动其他技术栈，即可用 React 构建现代功能。"
+						},
+						"vue": {
+							"name": "Vue.js 开发团队",
+							"desc": "Vue 及其生态由全球开发者社区共同构建。"
+						},
+						"figma": {
+							"name": "Figma 资源",
+							"desc": "在 Figma 社区中探索设计师与开发者分享的插件与文件。"
+						},
+						"beginners": {
+							"name": "新手入门",
+							"desc": "学习网站基础，前后端分工，以及 HTML/CSS 基本技能。"
+						},
+						"creative": {
+							"name": "创意设计师",
+							"desc": "优秀的设计团队不只是成员集合，还包括角色分工与协作方式。"
+						}
+					}
+				},
+				"profileTab": {
+					"connectionsTitle": "关系",
+					"teamsTitle": "团队",
+					"connectionsCount": "{{count}} 个关系",
+					"membersCount": "{{count}} 名成员",
+					"teamNames": {
+						"reactDevelopers": "React 开发者",
+						"uiDesigner": "UI 设计师",
+						"testTeam": "测试团队",
+						"nestDevelopers": "Nest.js 开发者",
+						"digitalMarketing": "数字营销"
+					},
+					"tags": {
+						"developer": "开发",
+						"designer": "设计",
+						"test": "测试",
+						"marketing": "营销"
+					},
+					"about": {
+						"title": "关于",
+						"description": "基本个人资料。",
+						"fullName": "姓名",
+						"role": "角色",
+						"country": "国家",
+						"language": "语言",
+						"contact": "联系方式",
+						"email": "邮箱"
+					},
+					"values": {
+						"developer": "开发者",
+						"usa": "美国",
+						"english": "英语"
+					},
+					"timeline": {
+						"title": "活动时间线",
+						"invoicePaid": "已支付 8 笔发票",
+						"wednesday": "星期三",
+						"invoicePaidDesc": "发票已支付给公司。",
+						"newProject": "为客户创建新项目",
+						"april18": "4月18日",
+						"projectDesc": "项目已创建并完成共享。",
+						"clientName": "{{name}}（客户）",
+						"orderSeptember": "9月订单 #37745",
+						"january10": "1月10日",
+						"orderDesc": "订单详情已同步。",
+						"publicMeeting": "公开会议",
+						"september30": "9月30日"
+					}
+				}
+			},
+			"system": {
+				"list": {
+					"columns": {
+						"name": "姓名",
+						"role": "角色",
+						"status": "状态",
+						"action": "操作"
+					},
+					"status": {
+						"disable": "禁用",
+						"enable": "启用"
+					}
+				},
+				"detail": {
+					"page": "这是 {{name}} 的详情页"
+				}
+			}
+		}
 	}
 }

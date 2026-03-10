@@ -4,13 +4,16 @@ import { Button } from "@/ui/button";
 import { Card } from "@/ui/card";
 import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
+import { useTranslation } from "react-i18next";
 
 export default function ConnectionsTab() {
+	const { t } = useTranslation();
+
 	const items = [
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "UI Designer",
+			title: t("management.user.profile.connectionsTab.roles.uiDesigner"),
 			tags: ["Figma", "Sketch"],
 			projects: "18",
 			tasks: "834",
@@ -20,7 +23,7 @@ export default function ConnectionsTab() {
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "Developer",
+			title: t("management.user.profile.connectionsTab.roles.developer"),
 			tags: ["Angular", "React"],
 			projects: "118",
 			tasks: "2.32k",
@@ -30,7 +33,7 @@ export default function ConnectionsTab() {
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "Developer",
+			title: t("management.user.profile.connectionsTab.roles.developer"),
 			tags: ["Html", "React"],
 			projects: "32",
 			tasks: "1.25k",
@@ -40,7 +43,7 @@ export default function ConnectionsTab() {
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "UI/UX Designer",
+			title: t("management.user.profile.connectionsTab.roles.uiuxDesigner"),
 			tags: ["Figma", "Sketch", "Photoshop"],
 			projects: "86",
 			tasks: "12.4k",
@@ -50,7 +53,7 @@ export default function ConnectionsTab() {
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "Full Stack Developer",
+			title: t("management.user.profile.connectionsTab.roles.fullStackDeveloper"),
 			tags: ["React", "Html", "Node.js"],
 			projects: "244",
 			tasks: "23.9k",
@@ -60,7 +63,7 @@ export default function ConnectionsTab() {
 		{
 			avatar: faker.image.avatarGitHub(),
 			name: faker.person.fullName(),
-			title: "SEO",
+			title: t("management.user.profile.connectionsTab.roles.seo"),
 			tags: ["Analysis", "Writing"],
 			projects: "32",
 			tasks: "1.28k",
@@ -95,7 +98,7 @@ export default function ConnectionsTab() {
 								{item.projects}
 							</Text>
 							<Text variant="body2" className="opacity-60">
-								Projects
+								{t("management.user.profile.connectionsTab.projects")}
 							</Text>
 						</div>
 						<div className="[ flex flex-col  items-center">
@@ -103,7 +106,7 @@ export default function ConnectionsTab() {
 								{item.tasks}
 							</Text>
 							<Text variant="body2" className="opacity-60">
-								Tasks
+								{t("management.user.profile.connectionsTab.tasks")}
 							</Text>
 						</div>
 						<div className="[ flex flex-col  items-center">
@@ -111,7 +114,7 @@ export default function ConnectionsTab() {
 								{item.connections}
 							</Text>
 							<Text variant="body2" className="opacity-60">
-								Tasks
+								{t("management.user.profile.connectionsTab.connections")}
 							</Text>
 						</div>
 					</div>
@@ -120,7 +123,9 @@ export default function ConnectionsTab() {
 						<Button variant={item.connected ? "default" : "outline"}>
 							<Icon icon="ri:user-add-line" size={14} />
 							<Text variant="body2" className="ml-2">
-								CONNECTED
+								{item.connected
+									? t("management.user.profile.connectionsTab.connected")
+									: t("management.user.profile.connectionsTab.connect")}
 							</Text>
 						</Button>
 					</div>

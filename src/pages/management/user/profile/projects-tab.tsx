@@ -8,75 +8,69 @@ import { Card, CardContent } from "@/ui/card";
 import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 export default function ProjectsTab() {
+	const { t } = useTranslation();
+
 	const items = [
 		{
 			icon: <Icon icon="logos:react" size={40} />,
-			name: "Admin Template",
+			name: t("management.user.profile.projectsTab.items.adminTemplate.name"),
 			client: faker.person.fullName(),
-			desc: "Time is our most valuable asset, that is why we want to help you save it by creating…",
+			desc: t("management.user.profile.projectsTab.items.adminTemplate.desc"),
 			members: fakeAvatars(5),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
 			allHours: "98/135",
-			allTasks: faker.number.int({ min: 60, max: 99 }),
-			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
 			icon: <Icon icon="logos:vue" size={40} />,
-			name: "App Design",
-			desc: "App design combines the user interface (UI) and user experience (UX).  ",
+			name: t("management.user.profile.projectsTab.items.appDesign.name"),
+			desc: t("management.user.profile.projectsTab.items.appDesign.desc"),
 			client: faker.person.fullName(),
 			members: fakeAvatars(7),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
 			allHours: "880/421",
-			allTasks: faker.number.int({ min: 60, max: 99 }),
-			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
 			icon: <Icon icon="logos:figma" size={40} />,
-			name: "Figma Dashboard",
-			desc: "Use this template to organize your design project. Some of the key features are… ",
+			name: t("management.user.profile.projectsTab.items.figmaDashboard.name"),
+			desc: t("management.user.profile.projectsTab.items.figmaDashboard.desc"),
 			client: faker.person.fullName(),
 			members: fakeAvatars(3),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
 			allHours: "1.2k/820",
-			allTasks: faker.number.int({ min: 60, max: 99 }),
-			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
 			icon: <Icon icon="logos:html-5" size={40} />,
-			name: "Create Website",
-			desc: "Your domain name should reflect your products or services so that your...  ",
+			name: t("management.user.profile.projectsTab.items.createWebsite.name"),
+			desc: t("management.user.profile.projectsTab.items.createWebsite.desc"),
 			client: faker.person.fullName(),
 			members: fakeAvatars(11),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 236,
 			allHours: "142/420",
-			allTasks: faker.number.int({ min: 60, max: 99 }),
-			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 		{
 			icon: <Icon icon="logos:adobe-xd" size={40} />,
-			name: "Logo Design",
-			desc: "Premium logo designs created by top logo designers. Create the branding of business.  ",
+			name: t("management.user.profile.projectsTab.items.logoDesign.name"),
+			desc: t("management.user.profile.projectsTab.items.logoDesign.desc"),
 			client: faker.person.fullName(),
 			members: fakeAvatars(5),
 			startDate: dayjs(faker.date.past({ years: 1 })),
 			deadline: dayjs(faker.date.future({ years: 1 })),
 			messages: 232,
 			allHours: "580/445",
-			allTasks: faker.number.int({ min: 60, max: 99 }),
-			closedTasks: faker.number.int({ min: 30, max: 60 }),
 		},
 	];
+
 	return (
 		<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 			{items.map((item) => (
@@ -90,7 +84,7 @@ export default function ProjectsTab() {
 									{item.name}
 								</Text>
 								<Text variant="caption" className="ml-4">
-									Client: {item.client}
+									{t("management.user.profile.projectsTab.client", { client: item.client })}
 								</Text>
 							</div>
 
@@ -104,14 +98,14 @@ export default function ProjectsTab() {
 						<main className="mt-4 w-full">
 							<div className="my-2 flex justify-between">
 								<Text variant="body1">
-									Start Date:
+									{t("management.user.profile.projectsTab.startDate")}
 									<Text variant="caption" className="ml-2">
 										{item.startDate.format("DD/MM/YYYY")}
 									</Text>
 								</Text>
 
 								<Text variant="body1">
-									Deadline:
+									{t("management.user.profile.projectsTab.deadline")}
 									<Text variant="caption" className="ml-2">
 										{item.deadline.format("DD/MM/YYYY")}
 									</Text>
@@ -123,13 +117,17 @@ export default function ProjectsTab() {
 						<footer className="flex w-full  flex-col items-center">
 							<div className="mb-4 flex w-full justify-between">
 								<span>
-									<Text variant="body1">All Hours:</Text>
+									<Text variant="body1">{t("management.user.profile.projectsTab.allHours")}</Text>
 									<Text variant="caption" className="ml-2">
 										{item.allHours}
 									</Text>
 								</span>
 
-								<Badge variant="warning">{item.deadline.diff(dayjs(), "day")} days left</Badge>
+								<Badge variant="warning">
+									{t("management.user.profile.projectsTab.daysLeft", {
+										count: item.deadline.diff(dayjs(), "day"),
+									})}
+								</Badge>
 							</div>
 							<div className="flex w-full ">
 								<AvatarGroup max={{ count: 3 }} size="small">

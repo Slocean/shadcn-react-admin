@@ -93,5 +93,202 @@
 		"task": {
 			"locationHistoryErased": "Location history is erased after logging in"
 		}
+	},
+	"management": {
+		"user": {
+			"common": {
+				"updateSuccess": "Update success!",
+				"saveChanges": "Save Changes"
+			},
+			"account": {
+				"tabs": {
+					"general": "General",
+					"notifications": "Notifications",
+					"security": "Security"
+				},
+				"general": {
+					"publicProfile": "Public Profile",
+					"deleteUser": "Delete User",
+					"username": "Username",
+					"email": "Email",
+					"phone": "Phone",
+					"address": "Address",
+					"city": "City",
+					"code": "Code",
+					"about": "About"
+				},
+				"notifications": {
+					"activityTitle": "Activity",
+					"applicationsTitle": "Applications",
+					"sectionDesc": "Manage how you receive notifications.",
+					"activity": {
+						"replyOnForm": "Email me when someone answers on my form",
+						"commentOnArticle": "Email me when someone comments on my article",
+						"followMe": "Email me when someone follows me"
+					},
+					"applications": {
+						"newsAndAnnouncements": "News and announcements",
+						"weeklyProductUpdates": "Weekly product updates",
+						"weeklyBlogDigest": "Weekly blog digest"
+					}
+				},
+				"security": {
+					"oldPassword": "Old Password",
+					"newPassword": "New Password",
+					"confirmNewPassword": "Confirm New Password",
+					"oldPasswordRequired": "Old password is required",
+					"newPasswordRequired": "New password is required",
+					"confirmPasswordRequired": "Please confirm your new password",
+					"passwordsNotMatch": "Passwords do not match"
+				}
+			},
+			"profile": {
+				"index": {
+					"subtitle": "TS FullStack",
+					"tabs": {
+						"profile": "Profile",
+						"teams": "Teams",
+						"projects": "Projects",
+						"connections": "Connections"
+					}
+				},
+				"connectionsTab": {
+					"projects": "Projects",
+					"tasks": "Tasks",
+					"connections": "Connections",
+					"connected": "Connected",
+					"connect": "Connect",
+					"roles": {
+						"uiDesigner": "UI Designer",
+						"developer": "Developer",
+						"uiuxDesigner": "UI/UX Designer",
+						"fullStackDeveloper": "Full Stack Developer",
+						"seo": "SEO"
+					}
+				},
+				"projectsTab": {
+					"client": "Client: {{client}}",
+					"startDate": "Start Date:",
+					"deadline": "Deadline:",
+					"allHours": "All Hours:",
+					"daysLeft": "{{count}} days left",
+					"items": {
+						"adminTemplate": {
+							"name": "Admin Template",
+							"desc": "Time is our most valuable asset, so we help you save it by creating efficient workflows."
+						},
+						"appDesign": {
+							"name": "App Design",
+							"desc": "App design combines the user interface (UI) and user experience (UX)."
+						},
+						"figmaDashboard": {
+							"name": "Figma Dashboard",
+							"desc": "Use this template to organize your design project and streamline team collaboration."
+						},
+						"createWebsite": {
+							"name": "Create Website",
+							"desc": "Your domain name should match your products or services and be easy to remember."
+						},
+						"logoDesign": {
+							"name": "Logo Design",
+							"desc": "Premium logo designs crafted by top designers to build your brand identity."
+						}
+					}
+				},
+				"teamsTab": {
+					"tags": {
+						"developer": "Developer"
+					},
+					"items": {
+						"react": {
+							"name": "React Developers",
+							"desc": "Build modern features in React without changing the rest of your stack."
+						},
+						"vue": {
+							"name": "Vue.js Dev Team",
+							"desc": "Vue and its ecosystem are built by a global community of contributors."
+						},
+						"figma": {
+							"name": "Figma Resources",
+							"desc": "Explore plugins and files shared by designers and developers in the Figma Community."
+						},
+						"beginners": {
+							"name": "Only Beginners",
+							"desc": "Learn website fundamentals, front-end vs back-end, and basic HTML/CSS skills."
+						},
+						"creative": {
+							"name": "Creative Designers",
+							"desc": "A great design team includes people, roles, and strong cross-functional collaboration."
+						}
+					}
+				},
+				"profileTab": {
+					"connectionsTitle": "Connections",
+					"teamsTitle": "Teams",
+					"connectionsCount": "{{count}} Connections",
+					"membersCount": "{{count}} Members",
+					"teamNames": {
+						"reactDevelopers": "React Developers",
+						"uiDesigner": "UI Designer",
+						"testTeam": "Test Team",
+						"nestDevelopers": "Nest.js Developers",
+						"digitalMarketing": "Digital Marketing"
+					},
+					"tags": {
+						"developer": "Developer",
+						"designer": "Designer",
+						"test": "Test",
+						"marketing": "Marketing"
+					},
+					"about": {
+						"title": "About",
+						"description": "Basic profile information.",
+						"fullName": "Full Name",
+						"role": "Role",
+						"country": "Country",
+						"language": "Language",
+						"contact": "Contact",
+						"email": "Email"
+					},
+					"values": {
+						"developer": "Developer",
+						"usa": "USA",
+						"english": "English"
+					},
+					"timeline": {
+						"title": "Activity Timeline",
+						"invoicePaid": "8 invoices have been paid",
+						"wednesday": "Wednesday",
+						"invoicePaidDesc": "Invoices have been paid to the company.",
+						"newProject": "Create a new project for client",
+						"april18": "April, 18",
+						"projectDesc": "Project setup has been created and shared.",
+						"clientName": "{{name}} (client)",
+						"orderSeptember": "Order #37745 from September",
+						"january10": "January, 10",
+						"orderDesc": "Order details have been synchronized.",
+						"publicMeeting": "Public Meeting",
+						"september30": "September, 30"
+					}
+				}
+			},
+			"system": {
+				"list": {
+					"columns": {
+						"name": "Name",
+						"role": "Role",
+						"status": "Status",
+						"action": "Action"
+					},
+					"status": {
+						"disable": "Disable",
+						"enable": "Enable"
+					}
+				},
+				"detail": {
+					"page": "This is the detail page of {{name}}"
+				}
+			}
+		}
 	}
 }

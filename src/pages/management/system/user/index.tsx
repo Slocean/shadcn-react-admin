@@ -8,19 +8,20 @@ import AppTable, { type TableColumn } from "@/components/table";
 import { usePathname, useRouter } from "@/routes/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
-import { Card, CardContent, CardHeader } from "@/ui/card";
+import { useTranslation } from "react-i18next";
 
 // TODO: fix
 // const USERS: UserInfo[] = USER_LIST as UserInfo[];
 const USERS: UserInfo[] = [];
 
 export default function UserPage() {
+	const { t } = useTranslation();
 	const { push } = useRouter();
 	const pathname = usePathname();
 
 	const columns: TableColumn<UserInfo>[] = [
 		{
-			title: "Name",
+			title: t("management.user.system.list.columns.name"),
 			dataIndex: "name",
 			width: 300,
 			searchValue: (record) => record.email ?? "",
@@ -38,14 +39,14 @@ export default function UserPage() {
 			},
 		},
 		{
-			title: "Role",
+			title: t("management.user.system.list.columns.role"),
 			dataIndex: "role",
 			align: "center",
 			width: 120,
 			render: (role) => <Badge variant="info">{(role as Role_Old)?.name}</Badge>,
 		},
 		{
-			title: "Status",
+			title: t("management.user.system.list.columns.status"),
 			dataIndex: "status",
 			align: "center",
 			width: 120,
@@ -53,13 +54,15 @@ export default function UserPage() {
 				const status = statusValue as BasicStatus;
 				return (
 					<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
-						{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
+						{status === BasicStatus.DISABLE
+							? t("management.user.system.list.status.disable")
+							: t("management.user.system.list.status.enable")}
 					</Badge>
 				);
 			},
 		},
 		{
-			title: "Action",
+			title: t("management.user.system.list.columns.action"),
 			key: "operation",
 			align: "center",
 			width: 100,
