@@ -1,12 +1,14 @@
 // import { USER_LIST } from "@/_mock/assets";
-import AppTable, { type TableColumn } from "@/components/table";
+
+import { useEffect, useState } from "react";
+import type { Role_Old, UserInfo } from "#/entity";
+import { BasicStatus } from "#/enum";
 import { Icon } from "@/components/icon";
+import AppTable, { type TableColumn } from "@/components/table";
 import { usePathname, useRouter } from "@/routes/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import type { Role_Old, UserInfo } from "#/entity";
-import { BasicStatus } from "#/enum";
 
 // TODO: fix
 // const USERS: UserInfo[] = USER_LIST as UserInfo[];
@@ -83,7 +85,10 @@ export default function UserPage() {
 			),
 		},
 	];
-
+	const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
+	useEffect(() => {
+		console.log(pagination);
+	}, [pagination]);
 	return (
 		<Card>
 			<CardHeader>
@@ -101,7 +106,10 @@ export default function UserPage() {
 					enableColumnFilter
 					bordered
 					showPagination
-					pagination={{ pageSize: 10, total: USERS.length, pageSizeOptions: [10, 20, 50] }}
+					pagination={pagination}
+					onPageChange={(current, pageSize) => {
+						setPagination({ current, pageSize });
+					}}
 				/>
 			</CardContent>
 		</Card>

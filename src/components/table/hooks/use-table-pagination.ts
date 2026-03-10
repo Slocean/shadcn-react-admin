@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DEFAULT_PAGE_SIZE } from "../constants";
 import type { TablePagination } from "../types";
 
@@ -6,10 +6,16 @@ interface UseTablePaginationParams<T> {
 	showPagination: boolean;
 	dataSource: T[];
 	pagination?: TablePagination;
+	onPageChange?: (current: number, pageSize: number, total: number) => void;
 }
 
-export function useTablePagination<T>({ showPagination, dataSource, pagination }: UseTablePaginationParams<T>) {
-	const onChange = pagination?.onChange;
+export function useTablePagination<T>({
+	showPagination,
+	dataSource,
+	pagination,
+	onPageChange,
+}: UseTablePaginationParams<T>) {
+	const onPaginationChange = pagination?.onChange;
 	const controlledCurrent = pagination?.current;
 	const controlledPageSize = pagination?.pageSize;
 	const controlledTotal = pagination?.total;
@@ -22,14 +28,21 @@ export function useTablePagination<T>({ showPagination, dataSource, pagination }
 	const total = controlledTotal ?? dataSource.length;
 	const totalPages = Math.max(1, Math.ceil(total / pageSize));
 	const current = Math.min(Math.max(controlledCurrent ?? innerCurrent, 1), totalPages);
+	const emitPageChange = useCallback(
+		(nextCurrent: number, nextPageSize: number, nextTotal: number) => {
+			onPaginationChange?.(nextCurrent, nextPageSize, nextTotal);
+			onPageChange?.(nextCurrent, nextPageSize, nextTotal);
+		},
+		[onPaginationChange, onPageChange],
+	);
 
 	useEffect(() => {
 		if (!showPagination || controlledCurrent !== undefined) return;
 		if (innerCurrent > totalPages) {
 			setInnerCurrent(totalPages);
-			onChange?.(totalPages, pageSize);
+			emitPageChange(totalPages, pageSize, total);
 		}
-	}, [showPagination, controlledCurrent, innerCurrent, totalPages, onChange, pageSize]);
+	}, [showPagination, controlledCurrent, innerCurrent, total, totalPages, pageSize, emitPageChange]);
 
 	const pageData = useMemo(() => {
 		if (!showPagination) return dataSource;
@@ -48,7 +61,7 @@ export function useTablePagination<T>({ showPagination, dataSource, pagination }
 		if (controlledCurrent === undefined) {
 			setInnerCurrent(page);
 		}
-		onChange?.(page, pageSize);
+		emitPageChange(page, pageSize, total);
 	};
 
 	const handlePageSizeChange = (value: string) => {
@@ -65,7 +78,7 @@ export function useTablePagination<T>({ showPagination, dataSource, pagination }
 			setInnerCurrent(nextCurrent);
 		}
 
-		onChange?.(nextCurrent, nextPageSize);
+		emitPageChange(nextCurrent, nextPageSize, total);
 	};
 
 	return {

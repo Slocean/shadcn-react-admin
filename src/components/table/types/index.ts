@@ -23,7 +23,7 @@ export interface TablePagination {
 	pageSize?: number;
 	total?: number;
 	pageSizeOptions?: number[];
-	onChange?: (current: number, pageSize: number) => void;
+	onChange?: (current: number, pageSize: number, total: number) => void;
 }
 
 export interface AppTableProps<T> {
@@ -36,6 +36,7 @@ export interface AppTableProps<T> {
 	enableColumnFilter?: boolean;
 	showPagination?: boolean;
 	pagination?: TablePagination;
+	onPageChange?: (current: number, pageSize: number, total: number) => void;
 	emptyText?: React.ReactNode;
 	bordered?: boolean;
 	className?: string;

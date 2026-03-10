@@ -21,6 +21,7 @@ export default function AppTable<T extends object>({
 	enableColumnFilter = false,
 	showPagination = false,
 	pagination,
+	onPageChange,
 	emptyText,
 	bordered = false,
 	className,
@@ -37,6 +38,7 @@ export default function AppTable<T extends object>({
 			showPagination,
 			dataSource,
 			pagination,
+			onPageChange,
 		});
 
 	const filteredData = useMemo(() => {
