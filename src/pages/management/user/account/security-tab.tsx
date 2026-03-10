@@ -1,7 +1,7 @@
 import { Button } from "@/ui/button";
 import { Card, CardContent } from "@/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/ui/form";
-import { Input } from "@/ui/input";
+import { PasswordInput } from "@/components/form/PasswordInput";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -49,7 +49,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.oldPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" autoComplete="current-password" {...field} />
+										<PasswordInput autoComplete="current-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -64,7 +64,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.newPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" autoComplete="new-password" {...field} />
+										<PasswordInput autoComplete="new-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -83,7 +83,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.confirmNewPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" autoComplete="new-password" {...field} />
+										<PasswordInput autoComplete="new-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
