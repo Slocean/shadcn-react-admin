@@ -91,28 +91,28 @@ export default function UserPage() {
 		// TODO: fetch data
 	}, [pagination]);
 	return (
-		<Card>
-			<CardHeader>
-				<div className="flex items-center justify-between">
-					<div>User List</div>
-					<Button onClick={() => {}}>New</Button>
-				</div>
-			</CardHeader>
-			<CardContent>
-				<AppTable<UserInfo>
-					rowKey="id"
-					columns={columns}
-					dataSource={USERS}
-					enableGlobalSearch
-					enableColumnFilter
-					bordered
-					showPagination
-					pagination={pagination}
-					onPageChange={(current, pageSize) => {
-						setPagination({ current, pageSize });
-					}}
-				/>
-			</CardContent>
-		</Card>
+		// <Card>
+		// 	<CardHeader>
+		// 		<div className="flex items-center justify-between">
+		// 			<div>User List</div>
+		// 			<Button onClick={() => {}}>New</Button>
+		// 		</div>
+		// 	</CardHeader>
+		// <CardContent>
+		//   			</CardContent>
+		// </Card>
+		<AppTable<UserInfo>
+			rowKey="id"
+			columns={columns}
+			dataSource={USERS}
+			enableGlobalSearch
+			enableColumnFilter
+			bordered
+			showPagination
+			pagination={pagination}
+			onPageChange={(current, pageSize) => {
+				setPagination({ current, pageSize });
+			}}
+		/>
 	);
 }
