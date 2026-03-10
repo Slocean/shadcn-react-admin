@@ -18,5 +18,17 @@
 
 		"light": "Light",
 		"dark": "Dark"
+	},
+	"table": {
+		"searchPlaceholder": "Search all columns on current page",
+		"searchAriaLabel": "Table global search",
+		"columnFilterButton": "Columns",
+		"columnFilterTitle": "Visible Columns",
+		"emptyText": "No data",
+		"summary": "Total {{total}}, page {{current}}/{{totalPages}}",
+		"pageSizeText": "{{size}} / page",
+		"prev": "Prev",
+		"next": "Next",
+		"unnamedColumn": "Column {{index}}"
 	}
 }

@@ -1,11 +1,10 @@
 // import { USER_LIST } from "@/_mock/assets";
+import AppTable, { type TableColumn } from "@/components/table";
 import { Icon } from "@/components/icon";
 import { usePathname, useRouter } from "@/routes/hooks";
 import { Badge } from "@/ui/badge";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
-import { Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import type { Role_Old, UserInfo } from "#/entity";
 import { BasicStatus } from "#/enum";
 
@@ -17,17 +16,19 @@ export default function UserPage() {
 	const { push } = useRouter();
 	const pathname = usePathname();
 
-	const columns: ColumnsType<UserInfo> = [
+	const columns: TableColumn<UserInfo>[] = [
 		{
 			title: "Name",
 			dataIndex: "name",
 			width: 300,
+			searchValue: (record) => record.email ?? "",
 			render: (_, record) => {
+				const displayName = record.email?.split("@")[0] ?? "-";
 				return (
 					<div className="flex">
 						<img alt="" src={record.avatar} className="h-10 w-10 rounded-full" />
 						<div className="ml-2 flex flex-col">
-							<span className="text-sm">{record.username}</span>
+							<span className="text-sm">{displayName}</span>
 							<span className="text-xs text-text-secondary">{record.email}</span>
 						</div>
 					</div>
@@ -39,24 +40,28 @@ export default function UserPage() {
 			dataIndex: "role",
 			align: "center",
 			width: 120,
-			render: (role: Role_Old) => <Badge variant="info">{role.name}</Badge>,
+			render: (role) => <Badge variant="info">{(role as Role_Old)?.name}</Badge>,
 		},
 		{
 			title: "Status",
 			dataIndex: "status",
 			align: "center",
 			width: 120,
-			render: (status) => (
-				<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
-					{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
-				</Badge>
-			),
+			render: (statusValue) => {
+				const status = statusValue as BasicStatus;
+				return (
+					<Badge variant={status === BasicStatus.DISABLE ? "error" : "success"}>
+						{status === BasicStatus.DISABLE ? "Disable" : "Enable"}
+					</Badge>
+				);
+			},
 		},
 		{
 			title: "Action",
 			key: "operation",
 			align: "center",
 			width: 100,
+			searchable: false,
 			render: (_, record) => (
 				<div className="flex w-full justify-center text-gray-500">
 					<Button
@@ -88,13 +93,15 @@ export default function UserPage() {
 				</div>
 			</CardHeader>
 			<CardContent>
-				<Table
+				<AppTable<UserInfo>
 					rowKey="id"
-					size="small"
-					scroll={{ x: "max-content" }}
-					pagination={false}
 					columns={columns}
 					dataSource={USERS}
+					enableGlobalSearch
+					enableColumnFilter
+					bordered
+					showPagination
+					pagination={{ pageSize: 10, total: USERS.length, pageSizeOptions: [10, 20, 50] }}
 				/>
 			</CardContent>
 		</Card>
