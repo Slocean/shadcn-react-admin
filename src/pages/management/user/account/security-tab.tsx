@@ -32,6 +32,15 @@ export default function SecurityTab() {
 			<CardContent>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+						<input
+							type="text"
+							name="username"
+							autoComplete="username"
+							className="sr-only"
+							tabIndex={-1}
+							aria-label="Username"
+						/>
+
 						<FormField
 							control={form.control}
 							name="oldPassword"
