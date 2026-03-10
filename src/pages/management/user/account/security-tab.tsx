@@ -40,7 +40,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.oldPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" {...field} />
+										<Input type="password" autoComplete="current-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -55,7 +55,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.newPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" {...field} />
+										<Input type="password" autoComplete="new-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -74,7 +74,7 @@ export default function SecurityTab() {
 								<FormItem>
 									<FormLabel>{t("management.user.account.security.confirmNewPassword")}</FormLabel>
 									<FormControl>
-										<Input type="password" {...field} />
+										<Input type="password" autoComplete="new-password" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
