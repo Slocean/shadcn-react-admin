@@ -14,7 +14,7 @@
 		"redo": "刷新",
 		"back": "返回",
 		"light": "亮色主题",
-		"dark": "黑暗主题"
+		"dark": "暗黑主题"
 	},
 	"table": {
 		"searchPlaceholder": "搜索当前页全部列",
@@ -27,5 +27,71 @@
 		"prev": "上一页",
 		"next": "下一页",
 		"unnamedColumn": "第 {{index}} 列"
+	},
+	"notice": {
+		"title": "通知",
+		"archiveAll": "全部归档",
+		"markAllAsRead": "全部标为已读",
+		"tabs": {
+			"all": "全部",
+			"inbox": "收件箱",
+			"team": "团队"
+		},
+		"actions": {
+			"mentionedIn": "在以下内容中提及了你",
+			"addedNewTagsTo": "为以下内容添加了新标签",
+			"requestedAccessTo": "申请访问",
+			"invitesReviewFile": "邀请你审阅文件。",
+			"postedNewArticle": "发布了新文章",
+			"wantsViewDesignProject": "想查看你的设计项目",
+			"requestedAddUserTo": "申请向以下项目添加用户",
+			"uploadedAttachment": "上传了附件",
+			"createdNewTaskTo": "在以下项目中创建了新任务",
+			"requestedUpgradePlan": "申请升级方案",
+			"sentMeetingInvitation": "向你发送了会议邀请",
+			"uploadedAttachments": "上传了 {{count}} 个附件",
+			"commentedOn": "评论了",
+			"invitedYouToJoin": "邀请你加入",
+			"accept": "同意",
+			"decline": "拒绝"
+		},
+		"targetType": {
+			"topic": "主题",
+			"project": "项目"
+		},
+		"time": {
+			"minutesAgo": "{{count}} 分钟前",
+			"hoursAgo": "{{count}} 小时前",
+			"daysAgo": "{{count}} 天前"
+		},
+		"messages": {
+			"expertOpinion": "@Cody 如需专业意见，看看 Mike 对这个话题的看法！",
+			"accountVerified": "你已成功验证账号",
+			"designPraise": "@Cody 这个设计太惊艳了！从布局到配色都很出色！"
+		},
+		"labels": {
+			"toDate": "至 {{date}}",
+			"editedTime": "编辑于 {{time}}",
+			"tokenId": "令牌 ID：{{id}}",
+			"dueDate": "截止日期：{{date}}",
+			"goToProfile": "前往资料",
+			"connected": "已连接"
+		},
+		"placeholders": {
+			"reply": "回复"
+		},
+		"meeting": {
+			"preparationForRelease": "发布前准备"
+		},
+		"month": {
+			"apr": "4月"
+		},
+		"dates": {
+			"may13": "5月13日",
+			"may15_2024": "2024年5月15日"
+		},
+		"task": {
+			"locationHistoryErased": "登录后定位历史会被清除"
+		}
 	}
 }

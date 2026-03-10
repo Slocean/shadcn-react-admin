@@ -88,6 +88,7 @@ export default function UserPage() {
 	const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
 	useEffect(() => {
 		console.log(pagination);
+		// TODO: fetch data
 	}, [pagination]);
 	return (
 		<Card>

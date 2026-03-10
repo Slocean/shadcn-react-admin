@@ -12,8 +12,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { Text } from "@/ui/typography";
 import { faker } from "@faker-js/faker";
 import { type CSSProperties, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function NoticeButton() {
+	const { t } = useTranslation();
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [count, setCount] = useState(4);
 
@@ -38,7 +40,7 @@ export default function NoticeButton() {
 			<Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
 				<SheetContent side="right" className="sm:max-w-md p-0 [&>button]:hidden flex flex-col" style={style}>
 					<SheetHeader className="flex flex-row items-center justify-between p-4 h-16 shrink-0">
-						<SheetTitle>Notifications</SheetTitle>
+						<SheetTitle>{t("notice.title")}</SheetTitle>
 						<Button
 							variant="ghost"
 							size="icon"
@@ -56,9 +58,9 @@ export default function NoticeButton() {
 					</div>
 					<SheetFooter className="flex flex-row h-16 w-full items-center justify-between p-4 shrink-0">
 						<Button variant="outline" className="flex-1 mr-2">
-							Archive all
+							{t("notice.archiveAll")}
 						</Button>
-						<Button className="flex-1 ml-2">Mark all as read</Button>
+						<Button className="flex-1 ml-2">{t("notice.markAllAsRead")}</Button>
 					</SheetFooter>
 				</SheetContent>
 			</Sheet>
@@ -67,17 +69,19 @@ export default function NoticeButton() {
 }
 
 function NoticeTab() {
+	const { t } = useTranslation();
+
 	const allNotifications = [
 		{
 			id: 1,
 			type: "mention",
 			user: "Joe Lincoln",
-			action: "mentioned you in",
+			action: t("notice.actions.mentionedIn"),
 			target: "Latest Trends",
-			targetType: "topic",
-			time: "18 mins ago",
+			targetType: t("notice.targetType.topic"),
+			time: t("notice.time.minutesAgo", { count: 18 }),
 			department: "Web Design 2024",
-			message: "@Cody For an expert opinion, check out what Mike has to say on this topic!",
+			message: t("notice.messages.expertOpinion"),
 			hasReply: true,
 			hasAvatar: true,
 		},
@@ -85,9 +89,9 @@ function NoticeTab() {
 			id: 2,
 			type: "tags",
 			user: "Leslie Alexander",
-			action: "added new tags to",
+			action: t("notice.actions.addedNewTagsTo"),
 			target: "Web Redesign 2024",
-			time: "53 mins ago",
+			time: t("notice.time.minutesAgo", { count: 53 }),
 			department: "ACME",
 			tags: ["Client-Request", "Figma", "Redesign"],
 			hasAvatar: true,
@@ -96,10 +100,10 @@ function NoticeTab() {
 			id: 3,
 			type: "access",
 			user: "Guy Hawkins",
-			action: "requested access to",
+			action: t("notice.actions.requestedAccessTo"),
 			target: "AirSpace",
-			targetType: "project",
-			time: "14 hours ago",
+			targetType: t("notice.targetType.project"),
+			time: t("notice.time.hoursAgo", { count: 14 }),
 			department: "Dev Team",
 			hasActions: true,
 			hasAvatar: true,
@@ -108,21 +112,21 @@ function NoticeTab() {
 			id: 4,
 			type: "file",
 			user: "Jane Perez",
-			action: "invites you to review a file.",
-			time: "3 hours ago",
+			action: t("notice.actions.invitesReviewFile"),
+			time: t("notice.time.hoursAgo", { count: 3 }),
 			fileSize: "742kb",
 			fileName: "Launch_nov24.pptx",
 			fileType: "ppt",
-			editedTime: "39 mins ago",
+			editedTime: t("notice.time.minutesAgo", { count: 39 }),
 			hasAvatar: true,
 		},
 		{
 			id: 5,
 			type: "article",
 			user: "Raymond Pawell",
-			action: "posted a new article",
+			action: t("notice.actions.postedNewArticle"),
 			target: "2024 Roadmap",
-			time: "1 hour ago",
+			time: t("notice.time.hoursAgo", { count: 1 }),
 			department: "Roadmap",
 			hasAvatar: true,
 		},
@@ -130,12 +134,12 @@ function NoticeTab() {
 			id: 6,
 			type: "project",
 			user: "Tyler Hero",
-			action: "wants to view your design project",
-			time: "3 day ago",
+			action: t("notice.actions.wantsViewDesignProject"),
+			time: t("notice.time.daysAgo", { count: 3 }),
 			department: "Metronic Launcher mockups",
 			fileName: "Launcher-UIkit.fig",
 			fileType: "figma",
-			editedTime: "2 mins ago",
+			editedTime: t("notice.time.minutesAgo", { count: 2 }),
 			hasAvatar: true,
 		},
 	];
@@ -145,9 +149,9 @@ function NoticeTab() {
 			id: 1,
 			type: "user_request",
 			user: "Samuel Lee",
-			action: "requested to add user to",
+			action: t("notice.actions.requestedAddUserTo"),
 			target: "TechSynergy",
-			time: "22 hours ago",
+			time: t("notice.time.hoursAgo", { count: 22 }),
 			department: "Dev Team",
 			userEmail: "ronald.richards@gmail.com",
 			userName: "Ronald Richards",
@@ -157,16 +161,16 @@ function NoticeTab() {
 		{
 			id: 2,
 			type: "success",
-			message: "You have successfully verified your account",
-			time: "2 days ago",
+			message: t("notice.messages.accountVerified"),
+			time: t("notice.time.daysAgo", { count: 2 }),
 			isSuccess: true,
 		},
 		{
 			id: 3,
 			type: "file",
 			user: "Ava Peterson",
-			action: "uploaded attachment",
-			time: "3 days ago",
+			action: t("notice.actions.uploadedAttachment"),
+			time: t("notice.time.daysAgo", { count: 3 }),
 			department: "ACME",
 			fileName: "Redesign-2024.xls",
 			fileSize: "2.6 MB",
@@ -177,13 +181,13 @@ function NoticeTab() {
 			id: 4,
 			type: "task",
 			user: "Ethan Parker",
-			action: "created a new tasks to",
+			action: t("notice.actions.createdNewTaskTo"),
 			target: "Site Sculpt",
-			targetType: "project",
-			time: "3 days ago",
+			targetType: t("notice.targetType.project"),
+			time: t("notice.time.daysAgo", { count: 3 }),
 			department: "Web Designer",
-			taskTitle: "Location history is erased after Logging In",
-			dueDate: "15 May, 2024",
+			taskTitle: t("notice.task.locationHistoryErased"),
+			dueDate: t("notice.dates.may15_2024"),
 			tags: ["Improvement", "Bug"],
 			assignees: 2,
 			hasAvatar: true,
@@ -192,8 +196,8 @@ function NoticeTab() {
 			id: 5,
 			type: "upgrade",
 			user: "Benjamin Harris",
-			action: "requested to upgrade plan",
-			time: "4 days ago",
+			action: t("notice.actions.requestedUpgradePlan"),
+			time: t("notice.time.daysAgo", { count: 4 }),
 			department: "Marketing",
 			hasActions: true,
 			hasAvatar: true,
@@ -202,10 +206,10 @@ function NoticeTab() {
 			id: 6,
 			type: "mention",
 			user: "Isaac Morgan",
-			action: "mentioned you in",
+			action: t("notice.actions.mentionedIn"),
 			target: "Data Transmission",
-			targetType: "topic",
-			time: "6 days ago",
+			targetType: t("notice.targetType.topic"),
+			time: t("notice.time.daysAgo", { count: 6 }),
 			department: "Dev Team",
 			hasAvatar: true,
 		},
@@ -216,12 +220,13 @@ function NoticeTab() {
 			id: 1,
 			type: "meeting",
 			user: "Nova Hawthorne",
-			action: "sent you an meeting invitation",
-			time: "2 days ago",
+			action: t("notice.actions.sentMeetingInvitation"),
+			time: t("notice.time.daysAgo", { count: 2 }),
 			department: "Dev Team",
-			meetingTitle: "Preparation For Release",
+			meetingTitle: t("notice.meeting.preparationForRelease"),
 			meetingTime: "9:00 PM - 10:00 PM",
-			meetingDate: "Apr 12",
+			meetingMonth: t("notice.month.apr"),
+			meetingDay: "12",
 			attendees: 7,
 			hasActions: true,
 			hasAvatar: true,
@@ -230,10 +235,10 @@ function NoticeTab() {
 			id: 2,
 			type: "article",
 			user: "Adrian Vale",
-			action: "posted a new article",
+			action: t("notice.actions.postedNewArticle"),
 			target: "Marketing",
-			targetDate: "13 May",
-			time: "2 days ago",
+			targetDate: t("notice.dates.may13"),
+			time: t("notice.time.daysAgo", { count: 2 }),
 			department: "Marketing",
 			hasAvatar: true,
 		},
@@ -241,8 +246,8 @@ function NoticeTab() {
 			id: 3,
 			type: "upload",
 			user: "Skylar Frost",
-			action: "uploaded 2 attachments",
-			time: "3 days ago",
+			action: t("notice.actions.uploadedAttachments", { count: 2 }),
+			time: t("notice.time.daysAgo", { count: 3 }),
 			department: "Web Design",
 			files: [
 				{ name: "Landing-page.docx", size: "1.9 MB", type: "word" },
@@ -254,11 +259,11 @@ function NoticeTab() {
 			id: 4,
 			type: "comment",
 			user: "Selene Silverleaf",
-			action: "commented on",
+			action: t("notice.actions.commentedOn"),
 			target: "SiteSculpt",
-			time: "4 days ago",
+			time: t("notice.time.daysAgo", { count: 4 }),
 			department: "Manager",
-			message: "@Cody This design is simply stunning! From layout to color, it's a work of art!",
+			message: t("notice.messages.designPraise"),
 			hasReply: true,
 			hasAvatar: true,
 		},
@@ -266,9 +271,9 @@ function NoticeTab() {
 			id: 5,
 			type: "invitation",
 			user: "Thalia Fox",
-			action: "has invited you to join",
+			action: t("notice.actions.invitedYouToJoin"),
 			target: "Design Research",
-			time: "4 days ago",
+			time: t("notice.time.daysAgo", { count: 4 }),
 			department: "Dev Team",
 			hasActions: true,
 			hasAvatar: true,
@@ -353,7 +358,7 @@ function NoticeTab() {
 									{notification.targetDate && (
 										<Text variant="subTitle2" color="secondary">
 											{" "}
-											to {notification.targetDate}
+											{t("notice.labels.toDate", { date: notification.targetDate })}
 										</Text>
 									)}
 								</Text>
@@ -365,7 +370,7 @@ function NoticeTab() {
 								{notification.department && (
 									<>
 										<Text variant="caption" color="secondary">
-											•
+											|
 										</Text>
 										<Text variant="caption" color="secondary">
 											{notification.department}
@@ -394,7 +399,7 @@ function NoticeTab() {
 									</Text>
 								</div>
 								<Button variant="outline" size="sm">
-									Go to profile
+									{t("notice.labels.goToProfile")}
 								</Button>
 							</div>
 						</div>
@@ -407,9 +412,9 @@ function NoticeTab() {
 								<div>
 									<div className="flex items-center space-x-4">
 										<div className="text-center">
-											<Badge variant="warning">{notification.meetingDate.split(" ")[0]}</Badge>
+											<Badge variant="warning">{notification.meetingMonth}</Badge>
 											<div className="text-lg font-bold mt-1">
-												<Text variant="subTitle2">{notification.meetingDate.split(" ")[1]}</Text>
+												<Text variant="subTitle2">{notification.meetingDay}</Text>
 											</div>
 										</div>
 										<div className="flex flex-col">
@@ -439,7 +444,8 @@ function NoticeTab() {
 								<Text variant="subTitle2">{notification.fileName}</Text>
 								<Text variant="caption" color="secondary">
 									{notification.fileSize}
-									{notification.editedTime && ` • Edited ${notification.editedTime}`}
+									{notification.editedTime &&
+										` | ${t("notice.labels.editedTime", { time: notification.editedTime })}`}
 								</Text>
 							</div>
 							<Button variant="outline" size="sm">
@@ -477,7 +483,7 @@ function NoticeTab() {
 									<div className="mt-2">
 										<Text variant="subTitle2">{artwork.title}</Text>
 										<Text variant="caption" color="secondary">
-											Token ID: {artwork.id}
+											{t("notice.labels.tokenId", { id: artwork.id })}
 										</Text>
 									</div>
 								</div>
@@ -503,7 +509,7 @@ function NoticeTab() {
 								<div className="flex-1">
 									<Text variant="subTitle2">{notification.taskTitle}</Text>
 									<Text variant="caption" color="secondary">
-										Due Date: {notification.dueDate}
+										{t("notice.labels.dueDate", { date: notification.dueDate })}
 									</Text>
 									<div className="flex items-center space-x-2 mt-2">
 										{notification.tags?.map((tag: string) => (
@@ -528,35 +534,9 @@ function NoticeTab() {
 					{/* Actions */}
 					{notification.hasActions && (
 						<div className="mt-3 flex space-x-2">
-							<Button size="sm">
-								{notification.type === "access"
-									? "Accept"
-									: notification.type === "user_request"
-										? "Accept"
-										: notification.type === "meeting"
-											? "Accept"
-											: notification.type === "upgrade"
-												? "Accept"
-												: notification.type === "invitation"
-													? "Accept"
-													: notification.type === "edit_request"
-														? "Accept"
-														: "Accept"}
-							</Button>
+							<Button size="sm">{t("notice.actions.accept")}</Button>
 							<Button variant="outline" size="sm">
-								{notification.type === "access"
-									? "Decline"
-									: notification.type === "user_request"
-										? "Decline"
-										: notification.type === "meeting"
-											? "Decline"
-											: notification.type === "upgrade"
-												? "Decline"
-												: notification.type === "invitation"
-													? "Decline"
-													: notification.type === "edit_request"
-														? "Decline"
-														: "Decline"}
+								{t("notice.actions.decline")}
 							</Button>
 						</div>
 					)}
@@ -565,7 +545,7 @@ function NoticeTab() {
 					{notification.hasReply && (
 						<div className="mt-3">
 							<div className="flex items-center space-x-2">
-								<Input placeholder="Reply " />
+								<Input placeholder={t("notice.placeholders.reply")} />
 								<Button variant="ghost" size="sm">
 									<Icon icon="solar:gallery-linear" size={16} />
 								</Button>
@@ -578,10 +558,10 @@ function NoticeTab() {
 						<div className="mt-3 flex items-center space-x-2">
 							<div className="flex items-center space-x-2 text-sm text-gray-600">
 								<Icon icon="solar:check-circle-bold" size={16} className="text-green-600" />
-								<span>Connected</span>
+								<span>{t("notice.labels.connected")}</span>
 							</div>
 							<Button variant="outline" size="sm">
-								Go to profile
+								{t("notice.labels.goToProfile")}
 							</Button>
 						</div>
 					)}
@@ -594,15 +574,15 @@ function NoticeTab() {
 		<Tabs defaultValue="all" className="w-full h-full flex flex-col">
 			<TabsList className="gap-2 w-full flex justify-between items-center shrink-0">
 				<TabsTrigger value="all" className="flex items-center gap-1">
-					<span>All</span>
+					<span>{t("notice.tabs.all")}</span>
 					<Badge variant="default">{allNotifications.length}</Badge>
 				</TabsTrigger>
 				<TabsTrigger value="inbox" className="flex items-center gap-1">
-					<span>Inbox</span>
+					<span>{t("notice.tabs.inbox")}</span>
 					<Badge variant="info">{inboxNotifications.length}</Badge>
 				</TabsTrigger>
 				<TabsTrigger value="team" className="flex items-center gap-1">
-					<span>Team</span>
+					<span>{t("notice.tabs.team")}</span>
 					<Badge variant="success">{teamNotifications.length}</Badge>
 				</TabsTrigger>
 			</TabsList>

@@ -9,13 +9,10 @@
 		"resetText": "Reset",
 		"searchText": "Search",
 		"queryText": "Search",
-
 		"inputText": "Please enter",
 		"chooseText": "Please choose",
-
 		"redo": "Refresh",
 		"back": "Back",
-
 		"light": "Light",
 		"dark": "Dark"
 	},
@@ -30,5 +27,71 @@
 		"prev": "Prev",
 		"next": "Next",
 		"unnamedColumn": "Column {{index}}"
+	},
+	"notice": {
+		"title": "Notifications",
+		"archiveAll": "Archive all",
+		"markAllAsRead": "Mark all as read",
+		"tabs": {
+			"all": "All",
+			"inbox": "Inbox",
+			"team": "Team"
+		},
+		"actions": {
+			"mentionedIn": "mentioned you in",
+			"addedNewTagsTo": "added new tags to",
+			"requestedAccessTo": "requested access to",
+			"invitesReviewFile": "invites you to review a file.",
+			"postedNewArticle": "posted a new article",
+			"wantsViewDesignProject": "wants to view your design project",
+			"requestedAddUserTo": "requested to add user to",
+			"uploadedAttachment": "uploaded attachment",
+			"createdNewTaskTo": "created a new task in",
+			"requestedUpgradePlan": "requested to upgrade plan",
+			"sentMeetingInvitation": "sent you a meeting invitation",
+			"uploadedAttachments": "uploaded {{count}} attachments",
+			"commentedOn": "commented on",
+			"invitedYouToJoin": "has invited you to join",
+			"accept": "Accept",
+			"decline": "Decline"
+		},
+		"targetType": {
+			"topic": "topic",
+			"project": "project"
+		},
+		"time": {
+			"minutesAgo": "{{count}} mins ago",
+			"hoursAgo": "{{count}} hours ago",
+			"daysAgo": "{{count}} days ago"
+		},
+		"messages": {
+			"expertOpinion": "@Cody For an expert opinion, check out what Mike has to say on this topic!",
+			"accountVerified": "You have successfully verified your account",
+			"designPraise": "@Cody This design is simply stunning! From layout to color, it's a work of art!"
+		},
+		"labels": {
+			"toDate": "to {{date}}",
+			"editedTime": "Edited {{time}}",
+			"tokenId": "Token ID: {{id}}",
+			"dueDate": "Due Date: {{date}}",
+			"goToProfile": "Go to profile",
+			"connected": "Connected"
+		},
+		"placeholders": {
+			"reply": "Reply"
+		},
+		"meeting": {
+			"preparationForRelease": "Preparation For Release"
+		},
+		"month": {
+			"apr": "Apr"
+		},
+		"dates": {
+			"may13": "13 May",
+			"may15_2024": "15 May, 2024"
+		},
+		"task": {
+			"locationHistoryErased": "Location history is erased after logging in"
+		}
 	}
 }
